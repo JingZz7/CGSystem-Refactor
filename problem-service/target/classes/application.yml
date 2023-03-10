@@ -1,0 +1,10 @@
+server:
+  port: 8201
+
+spring:
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/cgsystem?serverTimezone=UTC
+      username: root
+      password: 123456
