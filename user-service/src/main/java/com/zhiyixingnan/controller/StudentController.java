@@ -1,5 +1,6 @@
 package com.zhiyixingnan.controller;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.zhiyixingnan.domain.Student;
 import com.zhiyixingnan.service.IStudentService;
 import org.springframework.context.annotation.Lazy;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@SentinelResource(value = "test")
 @RequestMapping("/students")
 public class StudentController {
 
