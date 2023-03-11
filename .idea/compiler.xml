@@ -31,7 +31,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="CGSystem-Reconstitution" options="" />
+      <module name="CGSystem-Reconstitution" options="-parameters" />
       <module name="class-service" options="-parameters" />
       <module name="commons" options="-parameters" />
       <module name="favorite-service" options="-parameters" />

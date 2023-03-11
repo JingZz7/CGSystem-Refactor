@@ -236,3 +236,11 @@
 
 2023-03-11 16:20:22,504 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@test-service, ips: 
 
+2023-03-11 20:41:51,900 INFO DEFAULT_GROUP@@user-service {SYNC} {IP-NEW} cluster: DEFAULT, new ips size: 1, content: [175.10.104.173:8101:unknown:DEFAULT_1.0_true_false_DEFAULT]
+
+2023-03-11 20:41:51,902 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@user-service, ips: 175.10.104.173:8101_true,
+
+2023-03-11 20:42:42,840 INFO DEFAULT_GROUP@@user-service {SYNC} {IP-DEAD} cluster: DEFAULT, dead ips size: 1, content: [175.10.104.173:8101:unknown:DEFAULT_1.0_true_false_DEFAULT]
+
+2023-03-11 20:42:42,840 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@user-service, ips: 
+
