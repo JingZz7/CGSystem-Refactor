@@ -12,6 +12,7 @@
         <module>knowledge-service</module>
         <module>commons</module>
         <module>test</module>
+        <module>comment-service</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

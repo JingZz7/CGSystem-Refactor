@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="favorite-service" />
+        <module name="comment-service" />
         <module name="problem-service" />
         <module name="test" />
         <module name="model-service" />
@@ -20,6 +21,7 @@
     <bytecodeTargetLevel>
       <module name="CGSystem-Reconstitution" target="1.8" />
       <module name="class-service" target="1.8" />
+      <module name="comment-service" target="1.8" />
       <module name="commons" target="1.8" />
       <module name="favorite-service" target="1.8" />
       <module name="knowledge-service" target="1.8" />
@@ -31,8 +33,9 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="CGSystem-Reconstitution" options="-parameters" />
+      <module name="CGSystem-Reconstitution" options="" />
       <module name="class-service" options="-parameters" />
+      <module name="comment-service" options="-parameters" />
       <module name="commons" options="-parameters" />
       <module name="favorite-service" options="-parameters" />
       <module name="knowledge-service" options="-parameters" />
