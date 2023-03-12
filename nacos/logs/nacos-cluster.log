@@ -1,44 +1,6 @@
-2023-03-11 12:23:01,993 INFO Current addressing mode selection : StandaloneMemberLookup
+2023-03-12 20:35:48,926 INFO Current addressing mode selection : StandaloneMemberLookup
 
-2023-03-11 12:23:01,999 WARN [serverlist] updated to : [Member{ip='175.10.104.173', port=8848, state=UP, extendInfo={raftPort=7848}}]
+2023-03-12 20:35:48,932 WARN [serverlist] updated to : [Member{ip='175.10.106.60', port=8848, state=UP, extendInfo={raftPort=7848}}]
 
-2023-03-11 12:23:04,001 INFO This node is ready to provide external services
-
-2023-03-11 12:28:15,577 INFO Current addressing mode selection : StandaloneMemberLookup
-
-2023-03-11 12:28:15,581 WARN [serverlist] updated to : [Member{ip='175.10.104.173', port=8848, state=UP, extendInfo={raftPort=7848}}]
-
-2023-03-11 12:28:17,820 INFO This node is ready to provide external services
-
-2023-03-11 12:42:52,128 INFO Current addressing mode selection : StandaloneMemberLookup
-
-2023-03-11 12:42:52,132 WARN [serverlist] updated to : [Member{ip='175.10.104.173', port=8848, state=UP, extendInfo={raftPort=7848}}]
-
-2023-03-11 12:49:55,052 INFO Current addressing mode selection : StandaloneMemberLookup
-
-2023-03-11 12:49:55,055 WARN [serverlist] updated to : [Member{ip='175.10.104.173', port=8848, state=UP, extendInfo={raftPort=7848}}]
-
-2023-03-11 12:49:56,849 INFO This node is ready to provide external services
-
-2023-03-11 15:06:48,463 INFO Current addressing mode selection : StandaloneMemberLookup
-
-2023-03-11 15:06:48,466 WARN [serverlist] updated to : [Member{ip='175.10.104.173', port=8848, state=UP, extendInfo={raftPort=7848}}]
-
-2023-03-11 15:07:18,604 INFO Current addressing mode selection : StandaloneMemberLookup
-
-2023-03-11 15:07:18,608 WARN [serverlist] updated to : [Member{ip='175.10.104.173', port=8848, state=UP, extendInfo={raftPort=7848}}]
-
-2023-03-11 15:07:20,427 INFO This node is ready to provide external services
-
-2023-03-11 15:17:14,174 INFO Current addressing mode selection : StandaloneMemberLookup
-
-2023-03-11 15:17:14,180 WARN [serverlist] updated to : [Member{ip='175.10.104.173', port=8848, state=UP, extendInfo={raftPort=7848}}]
-
-2023-03-11 15:17:16,227 INFO This node is ready to provide external services
-
-2023-03-11 20:40:30,530 INFO Current addressing mode selection : StandaloneMemberLookup
-
-2023-03-11 20:40:30,538 WARN [serverlist] updated to : [Member{ip='175.10.104.173', port=8848, state=UP, extendInfo={raftPort=7848}}]
-
-2023-03-11 20:40:33,093 INFO This node is ready to provide external services
+2023-03-12 20:35:51,086 INFO This node is ready to provide external services
 

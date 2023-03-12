@@ -1,35 +1,4 @@
-2023-03-11 12:23:02,740 WARN isQuickStart:false
+2023-03-12 20:35:48,694 WARN [master-db] jdbc:mysql://127.0.0.1:3306/nacos_config?characterEncoding=utf8&serverTimezone=UTC&connectTimeout=1000&socketTimeout=3000&autoReconnect=true
 
-2023-03-11 12:28:16,267 WARN isQuickStart:false
-
-2023-03-11 12:42:51,929 ERROR [master-db] master db not found.
-
-2023-03-11 12:42:51,945 ERROR [db-error] master db  down.
-
-2023-03-11 12:42:52,780 WARN isQuickStart:false
-
-2023-03-11 12:42:52,783 ERROR Nacos Server did not start because dumpservice bean construction failure :
-java.lang.IllegalStateException: No DataSource set
-
-2023-03-11 12:43:01,964 ERROR [db-error] master db  down.
-
-2023-03-11 12:49:54,873 WARN [master-db] jdbc:mysql://127.0.0.1:3306/nacos_config?characterEncoding=utf8&serverTimezone=UTC&connectTimeout=1000&socketTimeout=3000&autoReconnect=true
-
-2023-03-11 12:49:55,690 WARN isQuickStart:false
-
-2023-03-11 15:06:48,253 WARN [master-db] jdbc:mysql://127.0.0.1:3306/nacos_config?characterEncoding=utf8&serverTimezone=UTC&connectTimeout=1000&socketTimeout=3000&autoReconnect=true
-
-2023-03-11 15:06:49,159 WARN isQuickStart:false
-
-2023-03-11 15:07:18,413 WARN [master-db] jdbc:mysql://127.0.0.1:3306/nacos_config?characterEncoding=utf8&serverTimezone=UTC&connectTimeout=1000&socketTimeout=3000&autoReconnect=true
-
-2023-03-11 15:07:19,233 WARN isQuickStart:false
-
-2023-03-11 15:17:13,964 WARN [master-db] jdbc:mysql://127.0.0.1:3306/nacos_config?characterEncoding=utf8&serverTimezone=UTC&connectTimeout=1000&socketTimeout=3000&autoReconnect=true
-
-2023-03-11 15:17:15,015 WARN isQuickStart:false
-
-2023-03-11 20:40:29,902 WARN [master-db] jdbc:mysql://127.0.0.1:3306/nacos_config?characterEncoding=utf8&serverTimezone=UTC&connectTimeout=1000&socketTimeout=3000&autoReconnect=true
-
-2023-03-11 20:40:31,696 WARN isQuickStart:false
+2023-03-12 20:35:49,655 WARN isQuickStart:false
 

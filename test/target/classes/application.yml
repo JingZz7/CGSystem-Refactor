@@ -10,12 +10,21 @@ spring:
       password: 123456
   application:
     name: test-service
-    cloud:
-      nacos:
-        discovery:
-          # 配置Nacos注册中心地址
-          server-addr: localhost:8848
-      sentinel:
-        transport:
-          # 添加监控页面地址即可
-          dashboard: localhost:8858
+  cloud:
+    nacos:
+      discovery:
+        # 配置Nacos注册中心地址
+        server-addr: localhost:8848
+    sentinel:
+      transport:
+        # 添加监控页面地址即可
+        dashboard: localhost:8858
+
+seata:
+  service:
+    vgroup-mapping:
+      # 这里需要对事务组做映射，默认的分组名为 应用名称-seata-service-group，将其映射到default集群
+      # 这个很关键，一定要配置对，不然会找不到服务
+      test-service-seata-service-group: default
+    grouplist:
+      default: localhost:8868
