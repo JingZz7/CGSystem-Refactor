@@ -44,3 +44,27 @@
 
 2023-03-12 20:35:54,385 INFO add listener: com.alibaba.nacos.naming.iplist.b515a53d-70e2-480a-9302-7a27f1b5b9ee##SEATA_GROUP@@seata-server
 
+2023-03-12 20:39:21,998 INFO add listener: com.alibaba.nacos.naming.iplist.public##DEFAULT_GROUP@@user-service
+
+2023-03-12 20:50:45,884 INFO add listener: com.alibaba.nacos.naming.iplist.public##DEFAULT_GROUP@@test-service
+
+2023-03-12 20:55:02,007 INFO add listener: com.alibaba.nacos.naming.iplist.public##DEFAULT_GROUP@@comment-service
+
+2023-03-12 20:57:39,558 INFO [RAFT-NOTIFIER] datum is deleted, key: com.alibaba.nacos.naming.domains.meta.public##DEFAULT_GROUP@@comment-service
+
+2023-03-12 20:57:39,561 INFO [RAFT-NOTIFIER] datum is deleted, key: com.alibaba.nacos.naming.domains.meta.public##DEFAULT_GROUP@@test-service
+
+2023-03-12 20:57:39,562 INFO [RAFT-NOTIFIER] datum is deleted, key: com.alibaba.nacos.naming.domains.meta.public##DEFAULT_GROUP@@user-service
+
+2023-03-12 21:48:46,043 INFO add listener: com.alibaba.nacos.naming.iplist.public##DEFAULT_GROUP@@user-service
+
+2023-03-12 22:14:39,552 INFO [RAFT-NOTIFIER] datum is deleted, key: com.alibaba.nacos.naming.domains.meta.public##DEFAULT_GROUP@@user-service
+
+2023-03-12 22:16:46,978 INFO add listener: com.alibaba.nacos.naming.iplist.public##DEFAULT_GROUP@@user-service
+
+2023-03-12 22:29:09,552 INFO [RAFT-NOTIFIER] datum is deleted, key: com.alibaba.nacos.naming.domains.meta.public##DEFAULT_GROUP@@user-service
+
+2023-03-12 22:37:50,448 INFO add listener: com.alibaba.nacos.naming.iplist.public##DEFAULT_GROUP@@user-service
+
+2023-03-12 22:38:38,724 INFO add listener: com.alibaba.nacos.naming.iplist.public##DEFAULT_GROUP@@test-service
+

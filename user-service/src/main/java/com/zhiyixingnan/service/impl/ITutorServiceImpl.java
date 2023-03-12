@@ -1,20 +1,20 @@
 package com.zhiyixingnan.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zhiyixingnan.dao.AdministratorDao;
 import com.zhiyixingnan.dao.StudentDao;
 import com.zhiyixingnan.dao.TeacherDao;
 import com.zhiyixingnan.dao.TutorDao;
 import com.zhiyixingnan.domain.Student;
+import com.zhiyixingnan.domain.Tutor;
 import com.zhiyixingnan.service.IStudentService;
+import com.zhiyixingnan.service.ITutorService;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 @Service
-public class IStudentServiceImpl extends ServiceImpl<StudentDao, Student>
-    implements IStudentService {
+public class ITutorServiceImpl extends ServiceImpl<TutorDao, Tutor> implements ITutorService {
 
   private final StudentDao studentDao;
   private final TeacherDao teacherDao;
@@ -22,7 +22,7 @@ public class IStudentServiceImpl extends ServiceImpl<StudentDao, Student>
   private final AdministratorDao administratorDao;
 
   @Lazy
-  public IStudentServiceImpl(
+  public ITutorServiceImpl(
       StudentDao studentDao,
       TeacherDao teacherDao,
       TutorDao tutorDao,
@@ -34,16 +34,10 @@ public class IStudentServiceImpl extends ServiceImpl<StudentDao, Student>
   }
 
   @Override
-  public Student selectOneStudentByIdAndDeleted(String id) {
-    return studentDao.selectOne(
-        new LambdaQueryWrapper<Student>().eq(Student::getId, id).eq(Student::getDeleted, 0));
-  }
-
-  @Override
-  public Boolean isExistStudent(String id, String password) {
-    LambdaQueryWrapper<Student> lqw = Wrappers.<Student>lambdaQuery();
-    lqw.eq(Student::getDeleted, 0)
-        .and(i -> i.eq(Student::getId, id).eq(Student::getPassword, password));
-    return studentDao.selectOne(lqw) != null;
+  public Boolean isExistTutor(String id, String password) {
+    LambdaQueryWrapper<Tutor> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+    lambdaQueryWrapper.eq(Tutor::getId, id).eq(Tutor::getPassword, password);
+    if (tutorDao.selectOne(lambdaQueryWrapper) == null) return false;
+    return true;
   }
 }

@@ -10,3 +10,25 @@
 
 2023-03-12 20:35:38,695 INFO spring.datasource.platform:mysql
 
+2023-03-12 20:35:49,654 WARN DumpService start
+
+2023-03-12 20:35:49,655 INFO start clear all config-info.
+
+2023-03-12 20:35:49,656 WARN clear all config-info failed.
+
+2023-03-12 20:35:49,722 INFO clear all config-info-tenant success.
+
+2023-03-12 20:35:49,838 INFO [all-dump] 103 / 103
+
+2023-03-12 20:35:49,838 INFO start clear all config-info-beta.
+
+2023-03-12 20:35:49,839 WARN clear all config-info-beta failed.
+
+2023-03-12 20:35:49,839 WARN clear all config-info-beta-tenant failed.
+
+2023-03-12 20:35:49,841 INFO start clear all config-info-tag.
+
+2023-03-12 20:35:49,841 WARN clear all config-info-tag failed.
+
+2023-03-12 20:35:49,841 WARN clear all config-info-tag-tenant failed.
+

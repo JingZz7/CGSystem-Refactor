@@ -8,13 +8,15 @@ import com.zhiyixingnan.dao.StudentDao;
 import com.zhiyixingnan.dao.TeacherDao;
 import com.zhiyixingnan.dao.TutorDao;
 import com.zhiyixingnan.domain.Student;
+import com.zhiyixingnan.domain.Teacher;
 import com.zhiyixingnan.service.IStudentService;
+import com.zhiyixingnan.service.ITeacherService;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 @Service
-public class IStudentServiceImpl extends ServiceImpl<StudentDao, Student>
-    implements IStudentService {
+public class ITeacherServiceImpl extends ServiceImpl<TeacherDao, Teacher>
+    implements ITeacherService {
 
   private final StudentDao studentDao;
   private final TeacherDao teacherDao;
@@ -22,7 +24,7 @@ public class IStudentServiceImpl extends ServiceImpl<StudentDao, Student>
   private final AdministratorDao administratorDao;
 
   @Lazy
-  public IStudentServiceImpl(
+  public ITeacherServiceImpl(
       StudentDao studentDao,
       TeacherDao teacherDao,
       TutorDao tutorDao,
@@ -34,16 +36,12 @@ public class IStudentServiceImpl extends ServiceImpl<StudentDao, Student>
   }
 
   @Override
-  public Student selectOneStudentByIdAndDeleted(String id) {
-    return studentDao.selectOne(
-        new LambdaQueryWrapper<Student>().eq(Student::getId, id).eq(Student::getDeleted, 0));
-  }
-
-  @Override
-  public Boolean isExistStudent(String id, String password) {
-    LambdaQueryWrapper<Student> lqw = Wrappers.<Student>lambdaQuery();
-    lqw.eq(Student::getDeleted, 0)
-        .and(i -> i.eq(Student::getId, id).eq(Student::getPassword, password));
-    return studentDao.selectOne(lqw) != null;
+  public Boolean isExistTeacher(String id, String password) {
+    LambdaQueryWrapper<Teacher> lambdaQueryWrapper = Wrappers.<Teacher>lambdaQuery();
+    lambdaQueryWrapper
+        .eq(Teacher::getDeleted, 0)
+        .and(i -> i.eq(Teacher::getId, id).eq(Teacher::getPassword, password));
+    if (teacherDao.selectOne(lambdaQueryWrapper) == null) return false;
+    return true;
   }
 }

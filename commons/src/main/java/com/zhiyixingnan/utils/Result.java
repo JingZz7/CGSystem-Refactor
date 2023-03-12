@@ -1,4 +1,4 @@
-package com.zhiyixingnan.JsonResult;
+package com.zhiyixingnan.utils;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

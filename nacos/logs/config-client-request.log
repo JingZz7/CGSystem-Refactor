@@ -21,3 +21,5 @@
 2023-03-12 20:35:52,516|1|null|127.0.0.1|get|server.maxRollbackRetryTimeout|SEATA_GROUP|b515a53d-70e2-480a-9302-7a27f1b5b9ee|6bb61e3b7bce0931da574d19d1d82c88|unknown
 2023-03-12 20:35:52,525|1|null|127.0.0.1|get|server.rollbackRetryTimeoutUnlockEnable|SEATA_GROUP|b515a53d-70e2-480a-9302-7a27f1b5b9ee|68934a3e9455fa72420237eb05902327|unknown
 2023-03-12 20:35:52,577|1|null|127.0.0.1|get|server.enableCheckAuth|SEATA_GROUP|b515a53d-70e2-480a-9302-7a27f1b5b9ee||unknown
+2023-03-12 20:36:17,834|0|null|127.0.0.1|get|transport.serialization|SEATA_GROUP|b515a53d-70e2-480a-9302-7a27f1b5b9ee|b943081c423b9a5416a706524ee05d40|unknown
+2023-03-12 20:36:17,840|0|null|127.0.0.1|get|transport.compressor|SEATA_GROUP|b515a53d-70e2-480a-9302-7a27f1b5b9ee|334c4a4c42fdb79d7ebc3e73b517e6f8|unknown
