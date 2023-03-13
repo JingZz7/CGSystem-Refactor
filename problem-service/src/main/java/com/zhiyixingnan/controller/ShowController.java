@@ -1,7 +1,10 @@
 package com.zhiyixingnan.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.github.pagehelper.PageInfo;
+import com.zhiyixingnan.domain.Problem;
 import com.zhiyixingnan.service.IProblemService;
+import com.zhiyixingnan.service.client.ModelOutputKnowledgeClient;
 import com.zhiyixingnan.utils.JsonResult;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,5 +39,37 @@ public class ShowController {
             .getProblemList(jsonObject.getInteger("currentPage"), jsonObject.getInteger("pageSize"))
             .getTotal(),
         "获取成功");
+  }
+
+  /**
+   * @param jsonObject: * @return JsonResult
+   * @author ZJ
+   * @description TODO [学生]获取题目列表(刷题推荐)aop分页增强 json数据包含id、currentPage、pageSize
+   * @date 2023/3/13 16:45
+   */
+  @RequestMapping(value = "/getProblemsList", method = RequestMethod.POST)
+  public JsonResult getProblemsList(@RequestBody JSONObject jsonObject) {
+    return JsonResult.success(
+        iProblemService.getProblemsList(
+            jsonObject.getString("id"),
+            jsonObject.getInteger("currentPage"),
+            jsonObject.getInteger("pageSize")),
+        "获取成功");
+  }
+
+  /**
+   * @param jsonObject: * @return JsonResult
+   * @author ZJ
+   * @description TODO [学生]获取题目列表(收藏夹) json数据包含studentId、currentPage、pageSize
+   * @date 2023/3/13 17:24
+   */
+  @RequestMapping(value = "/getFavoriteProblemList", method = RequestMethod.POST)
+  public JsonResult getFavoriteProblemList(@RequestBody JSONObject jsonObject) {
+    PageInfo<Problem> page =
+        iProblemService.getFavoriteProblemList(
+            jsonObject.getString("studentId"),
+            jsonObject.getInteger("currentPage"),
+            jsonObject.getInteger("pageSize"));
+    return JsonResult.successes(page.getList(), page.getTotal(), "获取成功");
   }
 }
