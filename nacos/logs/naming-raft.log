@@ -48,3 +48,5 @@
 
 2023-03-13 10:30:54,013 INFO add listener: com.alibaba.nacos.naming.iplist.public##DEFAULT_GROUP@@problem-service
 
+2023-03-13 10:47:41,536 INFO [RAFT-NOTIFIER] datum is deleted, key: com.alibaba.nacos.naming.domains.meta.public##DEFAULT_GROUP@@problem-service
+

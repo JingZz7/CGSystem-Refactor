@@ -76,3 +76,9 @@
 
 2023-03-13 10:44:51,982 WARN clearConfigHistory start
 
+2023-03-13 10:54:51,622 INFO [capacityManagement] start correct usage
+
+2023-03-13 10:54:51,626 INFO [capacityManagement] end correct usage, cost: 0s
+
+2023-03-13 10:54:51,986 WARN clearConfigHistory start
+

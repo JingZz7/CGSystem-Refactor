@@ -46,3 +46,7 @@
 
 2023-03-13 10:45:18,330 INFO [NACOS-RAFT] datum is changed, key: com.alibaba.nacos.naming.iplist.ephemeral.public##DEFAULT_GROUP@@problem-service, value: {"instanceList":[]}
 
+2023-03-13 10:47:41,535 WARN namespace : public, [DEFAULT_GROUP@@problem-service] services are automatically cleaned
+
+2023-03-13 10:47:41,537 INFO [DEAD-SERVICE] {"name":"DEFAULT_GROUP@@problem-service","protectThreshold":0.0,"groupName":"DEFAULT_GROUP","metadata":{},"finalizeCount":5,"owners":[],"resetWeight":false,"enabled":true,"selector":{"type":"none"},"namespaceId":"public","ipDeleteTimeout":30000,"lastModifiedMillis":1678675518331,"checksum":"d124dbeb23ba14349c57894486ad4059","clusterMap":{"DEFAULT":{"serviceName":"DEFAULT_GROUP@@problem-service","name":"DEFAULT","healthChecker":{"type":"TCP"},"defaultPort":80,"defaultCheckPort":80,"useIPPort4Check":true,"metadata":{},"sitegroup":"","defCkport":80,"empty":true,"defIPPort":80}},"empty":true}
+
