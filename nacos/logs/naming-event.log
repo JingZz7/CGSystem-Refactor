@@ -2,3 +2,35 @@
 
 2023-03-13 10:14:57,468 INFO [IP-UPDATED] namespace: b515a53d-70e2-480a-9302-7a27f1b5b9ee, service: SEATA_GROUP@@seata-server, ips: 10.72.54.223:8868_true,
 
+2023-03-13 10:15:18,408 INFO DEFAULT_GROUP@@user-service {SYNC} {IP-NEW} cluster: DEFAULT, new ips size: 1, content: [10.72.54.223:8101:unknown:DEFAULT_1.0_true_false_DEFAULT]
+
+2023-03-13 10:15:18,408 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@user-service, ips: 10.72.54.223:8101_true,
+
+2023-03-13 10:16:52,498 INFO DEFAULT_GROUP@@user-service {SYNC} {IP-DEAD} cluster: DEFAULT, dead ips size: 1, content: [10.72.54.223:8101:unknown:DEFAULT_1.0_true_false_DEFAULT]
+
+2023-03-13 10:16:52,498 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@user-service, ips: 
+
+2023-03-13 10:17:17,321 INFO DEFAULT_GROUP@@user-service {SYNC} {IP-NEW} cluster: DEFAULT, new ips size: 1, content: [10.72.54.223:8101:unknown:DEFAULT_1.0_true_false_DEFAULT]
+
+2023-03-13 10:17:17,321 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@user-service, ips: 10.72.54.223:8101_true,
+
+2023-03-13 10:18:26,927 INFO DEFAULT_GROUP@@user-service {SYNC} {IP-DEAD} cluster: DEFAULT, dead ips size: 1, content: [10.72.54.223:8101:unknown:DEFAULT_1.0_true_false_DEFAULT]
+
+2023-03-13 10:18:26,927 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@user-service, ips: 
+
+2023-03-13 10:30:54,013 INFO DEFAULT_GROUP@@problem-service {SYNC} {IP-NEW} cluster: DEFAULT, new ips size: 1, content: [10.72.54.223:8201:unknown:DEFAULT_1.0_true_false_DEFAULT]
+
+2023-03-13 10:30:54,013 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@problem-service, ips: 10.72.54.223:8201_true,
+
+2023-03-13 10:35:39,200 INFO DEFAULT_GROUP@@problem-service {SYNC} {IP-DEAD} cluster: DEFAULT, dead ips size: 1, content: [10.72.54.223:8201:unknown:DEFAULT_1.0_true_false_DEFAULT]
+
+2023-03-13 10:35:39,202 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@problem-service, ips: 
+
+2023-03-13 10:36:00,467 INFO DEFAULT_GROUP@@problem-service {SYNC} {IP-NEW} cluster: DEFAULT, new ips size: 1, content: [10.72.54.223:8201:unknown:DEFAULT_1.0_true_false_DEFAULT]
+
+2023-03-13 10:36:00,467 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@problem-service, ips: 10.72.54.223:8201_true,
+
+2023-03-13 10:45:18,331 INFO DEFAULT_GROUP@@problem-service {SYNC} {IP-DEAD} cluster: DEFAULT, dead ips size: 1, content: [10.72.54.223:8201:unknown:DEFAULT_1.0_true_false_DEFAULT]
+
+2023-03-13 10:45:18,331 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@problem-service, ips: 
+
