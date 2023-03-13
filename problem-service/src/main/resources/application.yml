@@ -8,3 +8,46 @@ spring:
       url: jdbc:mysql://localhost:3306/cgsystem?serverTimezone=UTC
       username: root
       password: 123456
+  application:
+    name: problem-service
+  cloud:
+    gateway:
+      globalcors: # 全局的跨域处理
+        add-to-simple-url-handler-mapping: true # 因为ajax发起者会通过options请求来向服务器询问是否允许跨域，所以需要设置为true来解决options请求被拦截问题
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: # 允许哪些网站的跨域请求
+              - "http://localhost:8201"
+            allowedMethods: # 允许的跨域ajax的请求方式
+              - "GET"
+              - "POST"
+              - "DELETE"
+              - "PUT"
+              - "OPTIONS"
+            allowedHeaders: "*" # 允许在请求中携带的头信息
+            allowCredentials: true # 是否允许携带cookie
+            maxAge: 360000 # 这次跨域检测的有效期，即一定时间内就不需要重复询问是否允许跨域了，直接请求即可。
+    nacos:
+      discovery:
+        server-addr: localhost:8848 # 配置Nacos注册中心地址
+    sentinel:
+      transport:
+        dashboard: localhost:8858 # 添加监控页面地址即可
+
+seata:
+  service:
+    vgroup-mapping:
+      # 这里需要对事务组做映射，默认的分组名为 应用名称-seata-service-group，将其映射到default集群
+      # 这个很关键，一定要配置对，不然会找不到服务
+      problem-service-seata-service-group: default
+    grouplist:
+      default: localhost:8868
+
+mybatis-plus:
+  global-config:
+    field-strategy: 0
+    db-config:
+      table-prefix: t_
+      id-type: auto
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

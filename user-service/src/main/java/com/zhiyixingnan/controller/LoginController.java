@@ -79,4 +79,32 @@ public class LoginController {
           "助教登录成功");
     return JsonResult.failed("登录失败");
   }
+
+  /**
+   * @param jsonObject: * @return JsonResult
+   * @author ZJ
+   * @description TODO 取随机验证码(忘记密码) json数据包含学号id即可
+   * @date 2023/3/13 10:06
+   */
+  @RequestMapping(value = "/getCaptchaById", method = RequestMethod.POST)
+  public JsonResult getCaptchaById(@RequestBody JSONObject jsonObject) {
+    if (iStudentService.getCaptchaById(jsonObject.getString("id")).equals("学号错误"))
+      return JsonResult.failed(iStudentService.getCaptchaById(jsonObject.getString("id")));
+    return JsonResult.success(iStudentService.getCaptchaById(jsonObject.getString("id")));
+  }
+
+  /**
+   * @param jsonObject:  * @return JsonResult
+   * @author ZJ
+   * @description TODO 忘记密码 json数据包含id、password
+   * @date 2023/3/13 10:08
+   */
+  @RequestMapping(value = "/forgotPassword", method = RequestMethod.PUT)
+  public JsonResult forgotPassword(@RequestBody JSONObject jsonObject) throws InterruptedException {
+    Boolean flag =
+            iStudentService.forgotPassword(
+                    jsonObject.getString("id"), jsonObject.getString("password"));
+    if (flag) return JsonResult.success("修改成功");
+    return JsonResult.failed("修改失败");
+  }
 }
