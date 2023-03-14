@@ -3,8 +3,7 @@ package com.zhiyixingnan.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
 import com.zhiyixingnan.domain.Problem;
-import com.zhiyixingnan.service.IProblemService;
-import com.zhiyixingnan.service.client.ModelOutputKnowledgeClient;
+import com.zhiyixingnan.service.IProblemStudentService;
 import com.zhiyixingnan.utils.JsonResult;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,11 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/show_problem")
 public class ShowController {
 
-  private final IProblemService iProblemService;
+  private final IProblemStudentService iProblemStudentService;
 
   @Lazy
-  public ShowController(IProblemService iProblemService) {
-    this.iProblemService = iProblemService;
+  public ShowController(IProblemStudentService iProblemStudentService) {
+    this.iProblemStudentService = iProblemStudentService;
   }
 
   /**
@@ -32,10 +31,10 @@ public class ShowController {
   @RequestMapping(value = "/getProblemList", method = RequestMethod.POST)
   public JsonResult getProblemList(@RequestBody JSONObject jsonObject) {
     return JsonResult.successes(
-        iProblemService
+        iProblemStudentService
             .getProblemList(jsonObject.getInteger("currentPage"), jsonObject.getInteger("pageSize"))
             .getList(),
-        iProblemService
+        iProblemStudentService
             .getProblemList(jsonObject.getInteger("currentPage"), jsonObject.getInteger("pageSize"))
             .getTotal(),
         "获取成功");
@@ -50,7 +49,7 @@ public class ShowController {
   @RequestMapping(value = "/getProblemsList", method = RequestMethod.POST)
   public JsonResult getProblemsList(@RequestBody JSONObject jsonObject) {
     return JsonResult.success(
-        iProblemService.getProblemsList(
+        iProblemStudentService.getProblemsList(
             jsonObject.getString("id"),
             jsonObject.getInteger("currentPage"),
             jsonObject.getInteger("pageSize")),
@@ -66,7 +65,7 @@ public class ShowController {
   @RequestMapping(value = "/getFavoriteProblemList", method = RequestMethod.POST)
   public JsonResult getFavoriteProblemList(@RequestBody JSONObject jsonObject) {
     PageInfo<Problem> page =
-        iProblemService.getFavoriteProblemList(
+        iProblemStudentService.getFavoriteProblemList(
             jsonObject.getString("studentId"),
             jsonObject.getInteger("currentPage"),
             jsonObject.getInteger("pageSize"));

@@ -10,7 +10,7 @@ import com.zhiyixingnan.dao.ProblemDao;
 import com.zhiyixingnan.domain.Favorite;
 import com.zhiyixingnan.domain.ModelOutputKnowledge;
 import com.zhiyixingnan.domain.Problem;
-import com.zhiyixingnan.service.IProblemService;
+import com.zhiyixingnan.service.IProblemStudentService;
 import com.zhiyixingnan.service.client.FavoriteClient;
 import com.zhiyixingnan.service.client.ModelOutputKnowledgeClient;
 import com.zhiyixingnan.utils.PageUtils;
@@ -26,15 +26,15 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class IProblemServiceImpl extends ServiceImpl<ProblemDao, Problem>
-    implements IProblemService {
+public class IProblemStudentServiceImpl extends ServiceImpl<ProblemDao, Problem>
+    implements IProblemStudentService {
 
   private final ProblemDao problemDao;
   private final ModelOutputKnowledgeClient modelOutputKnowledgeClient;
   private final FavoriteClient favoriteClient;
 
   @Lazy
-  public IProblemServiceImpl(
+  public IProblemStudentServiceImpl(
       ProblemDao problemDao,
       ModelOutputKnowledgeClient modelOutputKnowledgeClient,
       FavoriteClient favoriteClient) {

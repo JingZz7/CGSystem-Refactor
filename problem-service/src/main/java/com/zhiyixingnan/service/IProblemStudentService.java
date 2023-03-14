@@ -5,7 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.zhiyixingnan.domain.Problem;
 import com.zhiyixingnan.domain.Student;
 
-public interface IProblemService extends IService<Problem> {
+public interface IProblemStudentService extends IService<Problem> {
 
   /**
    * @param id:  * @return Problem

@@ -2,7 +2,7 @@ package com.zhiyixingnan.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.zhiyixingnan.domain.Problem;
-import com.zhiyixingnan.service.IProblemService;
+import com.zhiyixingnan.service.IProblemStudentService;
 import com.zhiyixingnan.utils.JsonResult;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/query")
 public class QueryController {
 
-  private final IProblemService iProblemService;
+  private final IProblemStudentService iProblemStudentService;
 
   @Lazy
-  public QueryController(IProblemService iProblemService) {
-    this.iProblemService = iProblemService;
+  public QueryController(IProblemStudentService iProblemStudentService) {
+    this.iProblemStudentService = iProblemStudentService;
   }
 
   /**
@@ -30,7 +30,7 @@ public class QueryController {
    */
   @RequestMapping(value = "/getProblemByIdAndDeleted0/{id}", method = RequestMethod.GET)
   public Problem getProblemByIdAndDeleted0(@PathVariable("id") String id) {
-    return iProblemService.getProblemByIdAndDeleted0(id);
+    return iProblemStudentService.getProblemByIdAndDeleted0(id);
   }
 
   /**
@@ -42,13 +42,13 @@ public class QueryController {
   @RequestMapping(value = "/getProblemById", method = RequestMethod.POST)
   public JsonResult getProblemById(@RequestBody JSONObject jsonObject) {
     return JsonResult.successes(
-        iProblemService
+        iProblemStudentService
             .getProblemById(
                 jsonObject.getString("problemId"),
                 jsonObject.getInteger("currentPage"),
                 jsonObject.getInteger("pageSize"))
             .getList(),
-        iProblemService
+        iProblemStudentService
             .getProblemById(
                 jsonObject.getString("problemId"),
                 jsonObject.getInteger("currentPage"),
@@ -66,7 +66,7 @@ public class QueryController {
   @RequestMapping(value = "/getProblemsByDifficulty", method = RequestMethod.POST)
   public JsonResult getProblemsByDifficulty(@RequestBody JSONObject jsonObject) {
     return JsonResult.success(
-        iProblemService.getProblemsByDifficulty(
+        iProblemStudentService.getProblemsByDifficulty(
             jsonObject.getString("id"),
             jsonObject.getString("difficulty"),
             jsonObject.getInteger("currentPage"),
@@ -83,14 +83,14 @@ public class QueryController {
   @RequestMapping(value = "/getProblemInFavoriteById", method = RequestMethod.POST)
   public JsonResult getProblemInFavoriteById(@RequestBody JSONObject jsonObject) {
     return JsonResult.successes(
-        iProblemService
+        iProblemStudentService
             .getProblemInFavoriteById(
                 jsonObject.getString("studentId"),
                 jsonObject.getString("problemId"),
                 jsonObject.getInteger("currentPage"),
                 jsonObject.getInteger("pageSize"))
             .getList(),
-        iProblemService
+        iProblemStudentService
             .getProblemInFavoriteById(
                 jsonObject.getString("studentId"),
                 jsonObject.getString("problemId"),
@@ -109,14 +109,14 @@ public class QueryController {
   @RequestMapping(value = "/getProblemByName", method = RequestMethod.POST)
   public JsonResult getProblemByName(@RequestBody JSONObject jsonObject) {
     return JsonResult.successes(
-        iProblemService
+        iProblemStudentService
             .getProblemByName(
                 jsonObject.getString("studentId"),
                 jsonObject.getString("problemName"),
                 jsonObject.getInteger("currentPage"),
                 jsonObject.getInteger("pageSize"))
             .getList(),
-        iProblemService
+        iProblemStudentService
             .getProblemByName(
                 jsonObject.getString("studentId"),
                 jsonObject.getString("problemName"),

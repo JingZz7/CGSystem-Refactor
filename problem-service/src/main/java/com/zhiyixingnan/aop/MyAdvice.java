@@ -16,7 +16,7 @@ import java.util.List;
 @Aspect
 public class MyAdvice {
 
-  @Pointcut("execution(* com.zhiyixingnan.service.IProblemService.getProblemsList(*,*,*))")
+  @Pointcut("execution(* com.zhiyixingnan.service.IProblemStudentService.getProblemsList(*,*,*))")
   private void getProblemsListPt() {}
 
   @Around("MyAdvice.getProblemsListPt()")
@@ -55,7 +55,7 @@ public class MyAdvice {
   }
 
   @Pointcut(
-      "execution(* com.zhiyixingnan.service.IProblemService.getProblemsByDifficulty(*,*,*,*))")
+      "execution(* com.zhiyixingnan.service.IProblemStudentService.getProblemsByDifficulty(*,*,*,*))")
   private void getProblemsByDifficultyPt() {}
 
   @Around("MyAdvice.getProblemsByDifficultyPt()")
