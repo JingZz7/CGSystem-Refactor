@@ -19,7 +19,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="CGSystem-Reconstitution" target="1.8" />
+      <module name="CGSystem-Refactor" target="1.8" />
       <module name="class-service" target="1.8" />
       <module name="comment-service" target="1.8" />
       <module name="commons" target="1.8" />
@@ -33,7 +33,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="CGSystem-Reconstitution" options="" />
+      <module name="CGSystem-Refactor" options="" />
       <module name="class-service" options="-parameters" />
       <module name="comment-service" options="-parameters" />
       <module name="commons" options="-parameters" />

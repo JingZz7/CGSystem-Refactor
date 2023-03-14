@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/CGSystem-Reconstitution.iml" filepath="$PROJECT_DIR$/CGSystem-Reconstitution.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CGSystem-Refactor.iml" filepath="$PROJECT_DIR$/CGSystem-Refactor.iml" />
       <module fileurl="file://$PROJECT_DIR$/class-service/class-service.iml" filepath="$PROJECT_DIR$/class-service/class-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/comment-service/comment-service.iml" filepath="$PROJECT_DIR$/comment-service/comment-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/commons/commons.iml" filepath="$PROJECT_DIR$/commons/commons.iml" />
