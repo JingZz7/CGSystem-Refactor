@@ -25,4 +25,15 @@ public class StudentController {
   public Student test(@PathVariable String id) {
     return iStudentService.selectOneStudentByIdAndDeleted(id);
   }
+
+  /**
+   * @param id:  * @return Student
+   * @author ZJ
+   * @description TODO 通过id查找单个学生，Deleted必须为0
+   * @date 2023/3/14 11:21
+   */
+  @RequestMapping(value = "/selectOneStudentByIdAndDeleted/{id}", method = RequestMethod.GET)
+  public Student selectOneStudentByIdAndDeleted(@PathVariable("id") String id) {
+    return iStudentService.selectOneStudentByIdAndDeleted(id);
+  }
 }

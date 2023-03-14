@@ -5,6 +5,12 @@ import com.zhiyixingnan.domain.Student;
 import java.util.List;
 
 public interface IStudentService extends IService<Student> {
+  /**
+   * @param id:  * @return Student
+   * @author ZJ
+   * @description TODO 通过id查找单个学生，Deleted必须为0
+   * @date 2023/3/14 11:19
+   */
   public Student selectOneStudentByIdAndDeleted(String id);
 
   /**

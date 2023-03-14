@@ -13,6 +13,7 @@ import com.zhiyixingnan.domain.Problem;
 import com.zhiyixingnan.service.IProblemService;
 import com.zhiyixingnan.service.client.FavoriteClient;
 import com.zhiyixingnan.service.client.ModelOutputKnowledgeClient;
+import com.zhiyixingnan.utils.PageUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
@@ -40,6 +41,12 @@ public class IProblemServiceImpl extends ServiceImpl<ProblemDao, Problem>
     this.problemDao = problemDao;
     this.modelOutputKnowledgeClient = modelOutputKnowledgeClient;
     this.favoriteClient = favoriteClient;
+  }
+
+  @Override
+  public Problem getProblemByIdAndDeleted0(String id) {
+    return problemDao.selectOne(
+        Wrappers.<Problem>lambdaQuery().eq(Problem::getId, id).eq(Problem::getDeleted, 0));
   }
 
   @Override
@@ -113,6 +120,124 @@ public class IProblemServiceImpl extends ServiceImpl<ProblemDao, Problem>
       problems.add(problem);
     }
 
+    int total = problems.size();
+    if (total > pageSize) {
+      int toIndex = pageSize * currentPage;
+      if (toIndex > total) toIndex = total;
+      problems = problems.subList(pageSize * (currentPage - 1), toIndex);
+    }
+    Page<Problem> page = new Page<>(currentPage, pageSize);
+    page.addAll(problems);
+    page.setPages((total + pageSize - 1) / pageSize);
+    page.setTotal(total);
+
+    PageInfo<Problem> pageInfo = new PageInfo<>(page);
+    return pageInfo;
+  }
+
+  @Override
+  public PageInfo<?> getProblemById(String problemId, int currentPage, int pageSize) {
+    List<Problem> problems =
+        problemDao.selectList(
+            Wrappers.<Problem>lambdaQuery()
+                .eq(Problem::getId, problemId)
+                .eq(Problem::getDeleted, 0));
+    return PageUtils.pageProblem(problems, currentPage, pageSize);
+  }
+
+  @Override
+  public Object getProblemsByDifficulty(
+      String id, String difficulty, int currentPage, int pageSize) {
+    if (!difficulty.equals("all")) {
+      List<ModelOutputKnowledge> list = modelOutputKnowledgeClient.getModelOutputKnowledgeById(id);
+      HashMap<String, BigDecimal> map = new HashMap<>();
+      for (ModelOutputKnowledge modelOutputKnowledge : list)
+        map.put(modelOutputKnowledge.getKnowledgePointId(), modelOutputKnowledge.getForecast());
+      List<String> arrayList = new ArrayList<>(); // 存放知识点id
+      for (Map.Entry<String, BigDecimal> vo : map.entrySet()) {
+        BigDecimal b = new BigDecimal("0.5");
+        // forecast大于0.5
+        if (vo.getValue().compareTo(b) == 1) continue;
+        arrayList.add(vo.getKey());
+      }
+      List<Problem> problems = new ArrayList<>(); // 存放推荐题目
+      int len = arrayList.size();
+
+      for (int i = 0; i < len; ++i) {
+        List<Problem> problemList =
+            problemDao.selectList(
+                Wrappers.<Problem>lambdaQuery()
+                    .eq(Problem::getKnowledgePointId, arrayList.get(i))
+                    .eq(Problem::getDifficulty, difficulty.charAt(0))
+                    .eq(Problem::getDeleted, 0)); // 第i个知识点的所有题目集合
+        for (Problem problem : problemList) problems.add(problem);
+      }
+      return problems;
+    }
+    List<ModelOutputKnowledge> list = modelOutputKnowledgeClient.getModelOutputKnowledgeById(id);
+    HashMap<String, BigDecimal> map = new HashMap<>();
+    for (ModelOutputKnowledge modelOutputKnowledge : list)
+      map.put(modelOutputKnowledge.getKnowledgePointId(), modelOutputKnowledge.getForecast());
+    List<String> arrayList = new ArrayList<>(); // 存放知识点id
+    for (Map.Entry<String, BigDecimal> vo : map.entrySet()) {
+      BigDecimal b = new BigDecimal("0.5");
+      // forecast大于0.5
+      if (vo.getValue().compareTo(b) == 1) continue;
+      arrayList.add(vo.getKey());
+    }
+    List<Problem> problems = new ArrayList<>(); // 存放推荐题目
+    int len = arrayList.size();
+    for (int i = 0; i < len; ++i) {
+      List<Problem> problemList =
+          problemDao.selectList(
+              Wrappers.<Problem>lambdaQuery()
+                  .eq(Problem::getKnowledgePointId, arrayList.get(i))
+                  .eq(Problem::getDeleted, 0)); // 第i个知识点的所有题目集合
+      for (Problem problem : problemList) problems.add(problem);
+    }
+    return problems;
+  }
+
+  @Override
+  public PageInfo<Problem> getProblemInFavoriteById(
+      String studentId, String problemId, int currentPage, int pageSize) {
+    Favorite favorite = favoriteClient.getProblemInFavoriteById(studentId, problemId);
+    List<Problem> problems =
+        problemDao.selectList(
+            Wrappers.<Problem>lambdaQuery().eq(Problem::getId, favorite.getProblemId()));
+    int total = problems.size();
+    if (total > pageSize) {
+      int toIndex = pageSize * currentPage;
+      if (toIndex > total) toIndex = total;
+      problems = problems.subList(pageSize * (currentPage - 1), toIndex);
+    }
+    Page<Problem> page = new Page<>(currentPage, pageSize);
+    page.addAll(problems);
+    page.setPages((total + pageSize - 1) / pageSize);
+    page.setTotal(total);
+
+    PageInfo<Problem> pageInfo = new PageInfo<>(page);
+    return pageInfo;
+  }
+
+  @Override
+  public PageInfo<Problem> getProblemByName(
+      String studentId, String problemName, int currentPage, int pageSize) {
+    List<Favorite> favorites = favoriteClient.getProblemsByStudentId(studentId);
+    List<Problem> problems = new ArrayList<>();
+    for (Favorite favorite : favorites)
+      if (problemDao.selectOne(
+              Wrappers.<Problem>lambdaQuery()
+                  .eq(Problem::getId, favorite.getProblemId())
+                  .eq(Problem::getDeleted, 0)
+                  .like(Problem::getName, problemName))
+          != null)
+        problems.add(
+            problemDao.selectOne(
+                Wrappers.<Problem>lambdaQuery()
+                    .eq(Problem::getId, favorite.getProblemId())
+                    .eq(Problem::getDeleted, 0)
+                    .like(Problem::getName, problemName)));
     int total = problems.size();
     if (total > pageSize) {
       int toIndex = pageSize * currentPage;

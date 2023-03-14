@@ -39,6 +39,7 @@ public class IStudentServiceImpl extends ServiceImpl<StudentDao, Student>
     this.administratorDao = administratorDao;
   }
 
+  @Override
   public Student selectOneStudentByIdAndDeleted(String id) {
     return studentDao.selectOne(
         new LambdaQueryWrapper<Student>().eq(Student::getId, id).eq(Student::getDeleted, 0));
@@ -93,7 +94,7 @@ public class IStudentServiceImpl extends ServiceImpl<StudentDao, Student>
     return code;
   }
 
-  @GlobalTransactional
+  @GlobalTransactional(rollbackFor = Exception.class)
   @Override
   public Boolean forgotPassword(String id, String password) throws InterruptedException {
     if (selectOneStudentByIdAndDeleted(id) == null

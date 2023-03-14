@@ -53,4 +53,44 @@ public class MyAdvice {
     }
     return objects;
   }
+
+  @Pointcut(
+      "execution(* com.zhiyixingnan.service.IProblemService.getProblemsByDifficulty(*,*,*,*))")
+  private void getProblemsByDifficultyPt() {}
+
+  @Around("MyAdvice.getProblemsByDifficultyPt()")
+  public Object getProblemsByDifficultyAdvice(ProceedingJoinPoint proceedingJoinPoint)
+      throws Throwable {
+    Object[] args = proceedingJoinPoint.getArgs();
+    Signature signature = proceedingJoinPoint.getSignature();
+    Object target = proceedingJoinPoint.getTarget();
+
+    // 方法[{}]开始执行
+    Object objects = proceedingJoinPoint.proceed();
+    // 方法[{}]执行结束
+
+    if (objects instanceof List) {
+      List objList = (List) objects;
+      int total = objList.size();
+      if (total > Integer.parseInt(args[3].toString())) {
+        int toIndex = Integer.parseInt(args[3].toString()) * Integer.parseInt(args[2].toString());
+        if (toIndex > total) toIndex = total;
+        objList =
+            objList.subList(
+                Integer.parseInt(args[3].toString()) * (Integer.parseInt(args[2].toString()) - 1),
+                toIndex);
+      }
+      com.github.pagehelper.Page<Problem> page =
+          new Page<>(Integer.parseInt(args[2].toString()), Integer.parseInt(args[3].toString()));
+      page.addAll(objList);
+      page.setPages(
+          (total + Integer.parseInt(args[3].toString()) - 1)
+              / Integer.parseInt(args[3].toString()));
+      page.setTotal(total);
+
+      PageInfo<Problem> pageInfo = new PageInfo<>(page);
+      return pageInfo;
+    }
+    return objects;
+  }
 }
