@@ -12,11 +12,18 @@ import com.zhiyixingnan.domain.Student;
 import com.zhiyixingnan.domain.Teacher;
 import com.zhiyixingnan.domain.Tutor;
 import com.zhiyixingnan.service.IStudentService;
+import com.zhiyixingnan.service.client.ClassClient;
+import com.zhiyixingnan.service.client.ModelClient;
 import com.zhiyixingnan.utils.GetCaptcha;
 import com.zhiyixingnan.utils.MailUtils;
 import io.seata.spring.annotation.GlobalTransactional;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 @Service
 public class IStudentServiceImpl extends ServiceImpl<StudentDao, Student>
@@ -26,17 +33,23 @@ public class IStudentServiceImpl extends ServiceImpl<StudentDao, Student>
   private final TeacherDao teacherDao;
   private final TutorDao tutorDao;
   private final AdministratorDao administratorDao;
+  private final ModelClient modelClient;
+  private final ClassClient classClient;
 
   @Lazy
   public IStudentServiceImpl(
       StudentDao studentDao,
       TeacherDao teacherDao,
       TutorDao tutorDao,
-      AdministratorDao administratorDao) {
+      AdministratorDao administratorDao,
+      ModelClient modelClient,
+      ClassClient classClient) {
     this.studentDao = studentDao;
     this.teacherDao = teacherDao;
     this.tutorDao = tutorDao;
     this.administratorDao = administratorDao;
+    this.modelClient = modelClient;
+    this.classClient = classClient;
   }
 
   @Override
@@ -123,5 +136,71 @@ public class IStudentServiceImpl extends ServiceImpl<StudentDao, Student>
       administratorDao.updateById(administrator);
       return true;
     }
+  }
+
+  @Override
+  public BigDecimal getFinalForecast(String id) {
+    return modelClient.getModelScoreByStudentId(id).getExamScore();
+  }
+
+  @Override
+  public List<HashMap<String, String>> displayPersonalInformation(String id) {
+    HashMap<String, String> map = new HashMap<>();
+    Student student =
+        studentDao.selectOne(
+            new LambdaQueryWrapper<Student>().eq(Student::getId, id).eq(Student::getDeleted, 0));
+    map.put("id", id);
+    map.put("name", student.getName());
+    map.put("class", classClient.getClassByClassId(student.getClassId()).getName());
+    map.put("email", student.getEmail());
+    map.put("phone", student.getPhone());
+    List<HashMap<String, String>> list = new ArrayList<>();
+    list.add(map);
+    return list;
+  }
+
+  @Override
+  public Boolean isStudentExist(String id) {
+    if (studentDao.selectOne(
+            Wrappers.<Student>lambdaQuery().eq(Student::getId, id).eq(Student::getDeleted, 0))
+        != null) {
+      return true;
+    }
+    return false;
+  }
+
+  @GlobalTransactional(rollbackFor = Exception.class)
+  @Override
+  public Boolean modifyPhoneAndEmailById(String id, String phone, String email)
+      throws InterruptedException {
+    Boolean flag = isStudentExist(id);
+    if (!flag) {
+      return false;
+    }
+    if (phone.charAt(0) != '1' || phone.length() != 11) {
+      return false;
+    }
+    Student student =
+        studentDao.selectOne(
+            Wrappers.<Student>lambdaQuery().eq(Student::getId, id).eq(Student::getDeleted, 0));
+    student.setPhone(phone);
+    student.setEmail(email);
+    studentDao.updateById(student);
+    return true;
+  }
+
+  @GlobalTransactional(rollbackFor = Exception.class)
+  @Override
+  public Boolean modifyPasswordById(String id, String password) throws InterruptedException {
+    Boolean flag = isStudentExist(id);
+    if (!flag) {
+      return false;
+    }
+    Student student =
+        studentDao.selectOne(
+            Wrappers.<Student>lambdaQuery().eq(Student::getId, id).eq(Student::getDeleted, 0));
+    student.setPassword(password);
+    studentDao.updateById(student);
+    return true;
   }
 }

@@ -1,8 +1,12 @@
 package com.zhiyixingnan.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.github.pagehelper.PageInfo;
 import com.zhiyixingnan.domain.Problem;
+import com.zhiyixingnan.domain.ProblemDescription;
+import com.zhiyixingnan.service.IProblemDescriptionService;
 import com.zhiyixingnan.service.IProblemStudentService;
 import com.zhiyixingnan.utils.JsonResult;
 import org.springframework.context.annotation.Lazy;
@@ -16,10 +20,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class ShowController {
 
   private final IProblemStudentService iProblemStudentService;
+  private final IProblemDescriptionService iProblemDescriptionService;
 
   @Lazy
-  public ShowController(IProblemStudentService iProblemStudentService) {
+  public ShowController(
+      IProblemStudentService iProblemStudentService,
+      IProblemDescriptionService iProblemDescriptionService) {
     this.iProblemStudentService = iProblemStudentService;
+    this.iProblemDescriptionService = iProblemDescriptionService;
   }
 
   /**
@@ -70,5 +78,19 @@ public class ShowController {
             jsonObject.getInteger("currentPage"),
             jsonObject.getInteger("pageSize"));
     return JsonResult.successes(page.getList(), page.getTotal(), "获取成功");
+  }
+
+  /**
+   * @param jsonObject: * @return JsonResult
+   * @author ZJ
+   * @description TODO 获取题目详细信息
+   * @date 2023/3/16 20:14
+   */
+  @RequestMapping(value = "/getProblemDescription", method = RequestMethod.POST)
+  public JsonResult getProblemDescription(@RequestBody JSONObject jsonObject) {
+    return JsonResult.success(
+        iProblemDescriptionService.getOne(
+            Wrappers.<ProblemDescription>lambdaQuery()
+                .eq(ProblemDescription::getProblemId, jsonObject.getString("problemId"))));
   }
 }

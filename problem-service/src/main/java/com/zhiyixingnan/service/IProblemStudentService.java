@@ -16,6 +16,14 @@ public interface IProblemStudentService extends IService<Problem> {
   public Problem getProblemByIdAndDeleted0(String id);
 
   /**
+   * @param id:  * @return Problem
+   * @author ZJ
+   * @description TODO 通过id查找问题，Deleted必须为1
+   * @date 2023/3/15 17:49
+   */
+  public Problem getProblemByIdAndDeleted1(String id);
+
+  /**
    * @param currentPage:
    * @param pageSize: a * @return PaeInfo<Problem>
    * @author ZJ

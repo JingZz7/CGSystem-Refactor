@@ -50,6 +50,12 @@ public class IProblemStudentServiceImpl extends ServiceImpl<ProblemDao, Problem>
   }
 
   @Override
+  public Problem getProblemByIdAndDeleted1(String id) {
+    return problemDao.selectOne(
+        Wrappers.<Problem>lambdaQuery().eq(Problem::getId, id).eq(Problem::getDeleted, 1));
+  }
+
+  @Override
   public PageInfo<Problem> getProblemList(int currentPage, int pageSize) {
     PageHelper.startPage(currentPage, pageSize);
     List<Problem> problems =

@@ -23,13 +23,24 @@ public class QueryController {
   }
 
   /**
-   * @param id:  * @return Problem
+   * @param id: * @return Problem
    * @author ZJ
    * @description TODO 通过id查找问题，Deleted必须为0
    * @date 2023/3/14 11:30
    */
   @RequestMapping(value = "/getProblemByIdAndDeleted0/{id}", method = RequestMethod.GET)
   public Problem getProblemByIdAndDeleted0(@PathVariable("id") String id) {
+    return iProblemStudentService.getProblemByIdAndDeleted0(id);
+  }
+
+  /**
+   * @param id: * @return Problem
+   * @author ZJ
+   * @description TODO 通过id查找问题，Deleted必须为1
+   * @date 2023/3/15 17:50
+   */
+  @RequestMapping(value = "/getProblemByIdAndDeleted1/{id}", method = RequestMethod.GET)
+  public Problem getProblemByIdAndDeleted1(@PathVariable("id") String id) {
     return iProblemStudentService.getProblemByIdAndDeleted0(id);
   }
 

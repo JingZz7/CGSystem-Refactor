@@ -12,6 +12,12 @@ public interface ProblemClient {
   @RequestMapping("/query/getProblemByIdAndDeleted0/{id}")
   public Problem getProblemByIdAndDeleted0(@PathVariable("id") String id);
 
+  @RequestMapping("/query/getProblemByIdAndDeleted1/{id}")
+  public Problem getProblemByIdAndDeleted1(@PathVariable("id") String id);
+
   @RequestMapping("/management_query/updateProblem")
   public Boolean updateProblem(@RequestBody Problem problem);
+
+  @RequestMapping("/management_query/insertProblem")
+  public Boolean insertProblem(@RequestBody Problem problem);
 }

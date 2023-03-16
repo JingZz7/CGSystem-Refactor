@@ -1,13 +1,19 @@
 package com.zhiyixingnan.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.zhiyixingnan.domain.CommentStudent;
 import com.zhiyixingnan.service.ICommentService;
 import com.zhiyixingnan.utils.JsonResult;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/comment")
@@ -38,5 +44,22 @@ public class CommentController {
       return JsonResult.success("评论成功");
     }
     return JsonResult.failed("评论失败");
+  }
+
+  @RequestMapping(value = "/getCommentList", method = RequestMethod.GET)
+  public List<CommentStudent> getCommentList() {
+    return iCommentService.list(null);
+  }
+
+  @RequestMapping(value = "/getCommentByProblemId/{id}", method = RequestMethod.GET)
+  public List<CommentStudent> getCommentByProblemId(@PathVariable("id") String id) {
+    return iCommentService.list(
+        Wrappers.<CommentStudent>lambdaQuery().eq(CommentStudent::getProblemId, id));
+  }
+
+  @RequestMapping(value = "/getCommentByStudentId/{id}", method = RequestMethod.GET)
+  public CommentStudent getCommentByStudentId(@PathVariable("id") String id) {
+    return iCommentService.getOne(
+        Wrappers.<CommentStudent>lambdaQuery().eq(CommentStudent::getPkCommentStudentId, id));
   }
 }

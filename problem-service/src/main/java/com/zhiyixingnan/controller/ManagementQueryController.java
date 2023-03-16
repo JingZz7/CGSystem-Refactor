@@ -27,6 +27,11 @@ public class ManagementQueryController {
     return iProblemTeacherService.updateById(jsonObject.toJavaObject(Problem.class));
   }
 
+  @RequestMapping(value = "/insertProblem", method = RequestMethod.POST)
+  public Boolean insertProblem(@RequestBody JSONObject jsonObject) {
+    return iProblemTeacherService.save(jsonObject.toJavaObject(Problem.class));
+  }
+
   /**
    * @param jsonObject: a * @return JsonResult
    * @author ZJ
